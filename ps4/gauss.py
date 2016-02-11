@@ -22,14 +22,17 @@ for i, row in enumerate(matrix):
         raise ZeroDivisionError('Zero along the diagonal.')
 
 # forward eliminate
-for row in range(0, len(vector)-1):
-    for i in range(row+1, len(vector)):
-        factor = matrix[i][row] / matrix[row][row]
-        for j in range(row, len(vector)):
-            matrix[i][j] = matrix[i][j] - factor * matrix[row][j]
+# current row, used for diagonal element
+for i in range(0, len(vector)-1):
+    # current element(s) below diagonal
+    for j in range(i+1, len(vector)):
+        # what we need to make [j,i] go to zero
+        fraction = matrix[j][i] / matrix[i][i]
 
-        vector[i] = vector[i] - factor * vector[row]
+        # apply fraction to the row below the diagonal element
+        for k in range(i, len(vector)):
+            matrix[j][k] = matrix[j][k] - fraction * matrix[i][k]
 
-    pprint(matrix, vector)
-
-pprint(matrix, vector)
+        # apply fraction to the element in the same row of the vector
+        vector[j] = vector[j] - fraction * vector[i]
+        pprint(matrix, vector)

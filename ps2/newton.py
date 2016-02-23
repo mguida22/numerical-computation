@@ -12,7 +12,7 @@ i = 0;
 while (i < MAX_TRIES):
     guess_b = guess_a - (f(guess_a) / cos(guess_a))
 
-    if (f(guess_b) > 0 - THRESHOLD) && (f(guess_b) < 0 + THRESHOLD):
+    if (f(guess_b) > 0 - THRESHOLD) and (f(guess_b) < 0 + THRESHOLD):
         print(f(guess_b))
         print(guess_b)
         print(i)

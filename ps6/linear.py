@@ -35,11 +35,15 @@ plt.xlabel('Year')
 plt.ylabel('Population')
 plt.show()
 
-# interpolate using data
+# interpolate using (1980,1990) for 1985
 def interpolate(a, b, x):
     # point-slope formula
     m = (b[1] - a[1]) / (b[0] - a[0])
     return (m * (x - a[0]) + a[1])
 
 y = interpolate(population[-2], population[-1], 1985)
+print(y)
+
+# interpolate using (1790,1990) for 2050
+y = interpolate(population[0], population[-1], 2050)
 print(y)

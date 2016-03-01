@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
-# data from http://physics.bu.edu/~redner/projects/population/cities/newyork.html
+# data from
+# http://physics.bu.edu/~redner/projects/population/cities/newyork.html
 
 import matplotlib.pyplot as plt
 
@@ -28,6 +29,8 @@ population = [
     (1990, 7322564)
 ]
 
+print("close the plot window to run the rest of the code")
+
 # plot data
 plt.scatter(*zip(*population))
 plt.title('NYC Population by Decade')
@@ -35,18 +38,22 @@ plt.xlabel('Year')
 plt.ylabel('Population')
 plt.show()
 
+print()
+
 # interpolate using (1980,1990) for 1985
+
+
 def interpolate(a, b, x):
     # point-slope formula
     m = (b[1] - a[1]) / (b[0] - a[0])
     return (m * (x - a[0]) + a[1])
 
 y = interpolate(population[-2], population[-1], 1985)
-print(y)
-
+print("The interpolate estimate for population in 1985 is {0}".format(y))
 # interpolate using (1790,1990) for 2050
 y = interpolate(population[0], population[-1], 2050)
-print(y)
+print("The extrapolate estimate for population in 2050 is {0}".format(y))
+
 
 def lagrange(a, b, c, x):
     # lagrange equation from textbook
@@ -57,4 +64,4 @@ def lagrange(a, b, c, x):
     return (t1 + t2 + t3)
 
 y = lagrange(population[-3], population[-2], population[-1], 1985)
-print(y)
+print("The Lagrangian estimate for population in 2050 is {0}".format(y))

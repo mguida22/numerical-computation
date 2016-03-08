@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import math
 import matplotlib.pyplot as plt
 import numpy as np
 from numpy import zeros
@@ -49,7 +50,12 @@ for i in range(0, n-1):
     print('S{i}(x) = {a} + {b}(x - {x}) + {c}(x - {x})^2 + {d}(x - {x})^3'.format(i=i, a=y[i], b=b[i], c=c[i][0], d=d[i], x=x[i]))
 
 
-plt.plot(x, y)
+plt.figure()
+for i in range(1, n-1):
+	x_plot = np.linspace(x[i-1], x[i+1], 100)
+	y_plot = a[i] + b[i] * (x_plot - x[i]) + c[i] * (x_plot - x[i])**2 + d[i] * (x_plot - x[i])**3
+	plt.plot(x_plot, y_plot)
+
 plt.title('Cubic Splines',fontsize=10)
 plt.show()
 

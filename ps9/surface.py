@@ -35,6 +35,9 @@ bottom = np.array([
     (76.55, 44.51, 22.0),
 ])
 
+np.sort(top, axis=0)
+np.sort(bottom, axis=0)
+
 # use midpoints to calculate more points for our surface
 x_top = []
 y_top = []
@@ -42,21 +45,21 @@ z_top = []
 x_bottom = []
 y_bottom = []
 z_bottom = []
-midpoint = [0, 0, 0]
 for i in range(0, len(top)):
     # ax.scatter(top[i][0], top[i][1], top[i][2], c='red')
     x_top.append(top[i][0])
     y_top.append(top[i][1])
     z_top.append(top[i][2])
 
-    # for j in range(0, len(top)):
-    #     if j != i:
-    #         x.append((top[i][0] + top[j][0]) / 2)
-    #         y.append((top[i][1] + top[j][1]) / 2)
-    #         z.append((top[i][2] + top[j][2]) / 2)
+    if (i+1 < len(top)):
+        x_top.append((top[i][0] + top[i+1][0]) / 2)
+        y_top.append((top[i][1] + top[i+1][1]) / 2)
+        z_top.append((top[i][2] + top[i+1][2]) / 2)
 
-            # ax.scatter(midpoint[0], midpoint[1], midpoint[2], c='green')
-
+    if (i+2 < len(top)):
+        x_top.append((top[i][0] + top[i+2][0]) / 2)
+        y_top.append((top[i][1] + top[i+2][1]) / 2)
+        z_top.append((top[i][2] + top[i+2][2]) / 2)
 
 for i in range(0, len(bottom)):
     # ax.scatter(bottom[i][0], bottom[i][1], bottom[i][2], c='blue')
@@ -64,17 +67,15 @@ for i in range(0, len(bottom)):
     y_bottom.append(bottom[i][1])
     z_bottom.append(bottom[i][2])
 
-    # for j in range(0, len(bottom)):
-    #     if j != i:
-    #         x.append((bottom[i][0] + bottom[j][0]) / 2)
-    #         y.append((bottom[i][1] + bottom[j][1]) / 2)
-    #         z.append((bottom[i][2] + bottom[j][2]) / 2)
+    if (i+1 < len(bottom)):
+        x_bottom.append((bottom[i][0] + bottom[i+1][0]) / 2)
+        y_bottom.append((bottom[i][1] + bottom[i+1][1]) / 2)
+        z_bottom.append((bottom[i][2] + bottom[i+1][2]) / 2)
 
-            # ax.scatter(midpoint[0], midpoint[1], midpoint[2], c='green')
-
-# ax.set_xlabel('X Label')
-# ax.set_ylabel('Y Label')
-# ax.set_zlabel('Z Label')
+    if (i+2 < len(bottom)):
+        x_bottom.append((bottom[i][0] + bottom[i+2][0]) / 2)
+        y_bottom.append((bottom[i][1] + bottom[i+2][1]) / 2)
+        z_bottom.append((bottom[i][2] + bottom[i+2][2]) / 2)
 
 fig = plt.figure()
 ax = fig.gca(projection='3d')

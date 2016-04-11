@@ -39,15 +39,15 @@ def eq(a, b):
     return True
 
 
-def validate_inputs(data, lower_bound, upper_bound, h):
-    valid_lb = False
-    valid_ub = False
+def validate_inputs(data, lb, ub, h):
+    lb_index = None
+    lb_index = None
     space = data[1][0] - data[0][0]
 
-    if eq(data[0][0], lower_bound):
-        valid_lb = True
-    if eq(data[0][0], upper_bound):
-        valid_ub = True
+    if eq(data[0][0], lb):
+        lb_index = 0
+    if eq(data[0][0], ub):
+        ub_index = 0
 
     for i in range(1, len(data)):
         curr_space = data[i][0] - data[i - 1][0]
@@ -56,17 +56,29 @@ def validate_inputs(data, lower_bound, upper_bound, h):
             print('Spacing must be withing +- {0}'.format(THRESHOLD))
             sys.exit(1)
 
-        if eq(data[i][0], lower_bound):
-            valid_lb = True
-        if eq(data[i][0], upper_bound):
-            valid_ub = True
+        if eq(data[i][0], lb):
+            lb_index = i
+        if eq(data[i][0], ub):
+            ub_index = i
 
-    if not valid_lb and valid_ub:
+    if not lb_index and ub_index:
         print('Invalid upper and/or lower bounds. They must fall directly on a datapoint')
         sys.exit(1)
 
+    return (lb_index, ub_index)
 
-def trapezoid(data, lower_bound, upper_bound, h):
-    validate_inputs(data, lower_bound, upper_bound, h)
 
-trapezoid(d, 1.0, 1.8, 0.1)
+def trapezoid(data, lb, ub, h):
+    lb_index, ub_index = validate_inputs(data, lb, ub, h)
+
+    x = 0
+    x += 0.5 * data[lb_index][1]
+    for i in range(1, ub_index - lb_index):
+        x += h * data[lb_index + i][1]
+
+    x += 0.5 * data[ub_index][1]
+
+    return abs(x * h)
+
+print(trapezoid(d, 1.0, 1.8, 0.1))
+print(trapezoid(d, 1.0, 1.8, 0.2))

@@ -80,5 +80,28 @@ def trapezoid(data, lb, ub, h):
 
     return abs(x * h)
 
+def simpsonOneThird(data, lb, ub, h):
+    lb_index, ub_index = validate_inputs(data, lb, ub, h)
+    if ub_index - lb_index < 3:
+        print('Need at least 3 data points within the range provided')
+        sys.exit(1)
+
+    even = 0
+    odd = 0
+    for i in range(1, ub_index - lb_index):
+        if i % 2 == 0:
+            even += data[lb_index + i][1]
+        else:
+            odd += data[lb_index + i][1]
+
+    x = (h / 6) * (data[lb_index][1] + data[lb_index][1] + (2 * even) + (4 * odd))
+
+    return abs(x)
+
+print('Trapezoid')
 print(trapezoid(d, 1.0, 1.8, 0.1))
 print(trapezoid(d, 1.0, 1.8, 0.2))
+print()
+print('Simpson\'s 1/3')
+print(simpsonOneThird(d, 1.0, 1.8, 0.1))
+print(simpsonOneThird(d, 1.0, 1.8, 0.2))

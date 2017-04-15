@@ -48,28 +48,28 @@ res_a_euler = euler(lambda x, y: 16 * (y - x),
                     lambda x, y, z: (45 * x) - y - (x * z),
                     lambda x, y, z: (x * y) - (4 * z),
                     initial = (1, 1, 1),
-                    h = 0.01,
+                    h = 0.0001,
                     n = 10000)
 
 res_b_euler = euler(lambda x, y: 16 * (y - x),
                     lambda x, y, z: (45 * x) - y - (x * z),
                     lambda x, y, z: (x * y) - (4 * z),
                     initial = (1.01, 1.01, 1.01),
-                    h = 0.01,
+                    h = 0.0001,
                     n = 10000)
 
 res_a_trap = trap(lambda x, y: 16 * (y - x),
                   lambda x, y, z: (45 * x) - y - (x * z),
                   lambda x, y, z: (x * y) - (4 * z),
                   initial = (1, 1, 1),
-                  h = 0.01,
+                  h = 0.0001,
                   n = 10000)
 
 res_b_trap = trap(lambda x, y: 16 * (y - x),
                   lambda x, y, z: (45 * x) - y - (x * z),
                   lambda x, y, z: (x * y) - (4 * z),
                   initial = (1.01, 1.01, 1.01),
-                  h = 0.01,
+                  h = 0.0001,
                   n = 10000)
 
 # time domain plots
@@ -81,37 +81,37 @@ plt.plot(res_a_trap[3], res_a_trap[0], c='red')
 plt.plot(res_b_trap[3], res_b_trap[0], c='blue')
 plt.show()
 
-# state-space plot res_a
-fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
-ax.plot(res_a_euler[0], res_a_euler[1], res_a_euler[2], c='red')
-plt.show()
-
-fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
-ax.plot(res_a_trap[0], res_a_trap[1], res_a_trap[2], c='red')
-plt.show()
-
-# state-space plot res_b
-fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
-ax.plot(res_b_euler[0], res_b_euler[1], res_b_euler[2], c='blue')
-plt.show()
-
-fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
-ax.plot(res_b_trap[0], res_b_trap[1], res_b_trap[2], c='blue')
-plt.show()
-
-# state-space plot both
-fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
-ax.plot(res_a_euler[0], res_a_euler[1], res_a_euler[2], c='red')
-ax.plot(res_b_euler[0], res_b_euler[1], res_b_euler[2], c='blue')
-plt.show()
-
-fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
-ax.plot(res_a_trap[0], res_a_trap[1], res_a_trap[2], c='red')
-ax.plot(res_b_trap[0], res_b_trap[1], res_b_trap[2], c='blue')
-plt.show()
+# # state-space plot res_a
+# fig = plt.figure()
+# ax = fig.add_subplot(111, projection='3d')
+# ax.plot(res_a_euler[0], res_a_euler[1], res_a_euler[2], c='red')
+# plt.show()
+#
+# fig = plt.figure()
+# ax = fig.add_subplot(111, projection='3d')
+# ax.plot(res_a_trap[0], res_a_trap[1], res_a_trap[2], c='red')
+# plt.show()
+#
+# # state-space plot res_b
+# fig = plt.figure()
+# ax = fig.add_subplot(111, projection='3d')
+# ax.plot(res_b_euler[0], res_b_euler[1], res_b_euler[2], c='blue')
+# plt.show()
+#
+# fig = plt.figure()
+# ax = fig.add_subplot(111, projection='3d')
+# ax.plot(res_b_trap[0], res_b_trap[1], res_b_trap[2], c='blue')
+# plt.show()
+#
+# # state-space plot both
+# fig = plt.figure()
+# ax = fig.add_subplot(111, projection='3d')
+# ax.plot(res_a_euler[0], res_a_euler[1], res_a_euler[2], c='red')
+# ax.plot(res_b_euler[0], res_b_euler[1], res_b_euler[2], c='blue')
+# plt.show()
+#
+# fig = plt.figure()
+# ax = fig.add_subplot(111, projection='3d')
+# ax.plot(res_a_trap[0], res_a_trap[1], res_a_trap[2], c='red')
+# ax.plot(res_b_trap[0], res_b_trap[1], res_b_trap[2], c='blue')
+# plt.show()
